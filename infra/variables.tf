@@ -1,0 +1,3 @@
+variable "repo" {
+  type = string
+}
