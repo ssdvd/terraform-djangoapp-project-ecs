@@ -1,5 +1,7 @@
+# Uso do módulo "infra" para criar recursos de infraestrutura para o ambiente de produção.
 module "prod" {
-  source = "../../infra"
+  source = "../../infra"  # Caminho para o diretório que contém o módulo "infra".
 
-  repo = "prod"
+  repo     = "prod"       # Nome do repositório passado como variável para o módulo.
+  cargoiam = "prod"       # Nome do cargo IAM passado como variável para o módulo.
 }
