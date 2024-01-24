@@ -7,3 +7,7 @@ variable "repo" {
 variable "cargoiam" {
   type = string  # Tipo da variável é uma string.
 }
+
+variable "env" {
+  type = string  # Tipo da variável é uma string.
+}
