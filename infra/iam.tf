@@ -1,6 +1,6 @@
 # Recurso para criar uma função IAM.
-resource "aws_iam_role" "funcao" {
-  name = "funcao_${var.cargoiam}"  # Nome da função IAM, usando a variável "cargoiam".
+resource "aws_iam_role" "role_ecs" {
+  name = "ecs_${var.cargoiam}"  # Nome da função IAM, usando a variável "cargoiam".
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -19,7 +19,7 @@ resource "aws_iam_role" "funcao" {
 # Recurso para associar uma política à função IAM para permissões relacionadas ao ECR (Elastic Container Registry).
 resource "aws_iam_role_policy" "ecs_ecr" {
   name = "ecs_ecr"
-  role = aws_iam_role.funcao.id
+  role = aws_iam_role.role_ecs.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -42,5 +42,5 @@ resource "aws_iam_role_policy" "ecs_ecr" {
 # Recurso para criar um perfil de instância IAM associado à função IAM.
 resource "aws_iam_instance_profile" "test_profile" {
   name = "perfil_${var.cargoiam}"  # Nome do perfil de instância, usando a variável "cargoiam".
-  role = aws_iam_role.funcao.name
+  role = aws_iam_role.role_ecs.name
 }
